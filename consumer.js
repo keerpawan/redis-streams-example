@@ -5,7 +5,7 @@ const app = express()
 const redisClient = redis.createClient(process.env.REDIS_URL)
 
 const createReader = require('@derhuerst/redis-stream/reader')
-const reader = createReader(redisClient, 'some-stream')
+const reader = createReader(redisClient, 'some-stream', { history: true })
 
 const messages = []
 reader.on('data', (data) => {
