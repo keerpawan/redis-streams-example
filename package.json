@@ -1,0 +1,15 @@
+{
+  "name": "redis-streams-example",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "docker-compose up",
+    "start:producer": "nodemon producer.js --watch producer.js",
+    "start:consumer": "nodemon consumer.js --watch consumer.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "nodemon": "^2.0.6",
+    "redis": "^3.0.2"
+  }
+}

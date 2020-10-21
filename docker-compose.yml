@@ -1,0 +1,36 @@
+services:
+  redis:
+    image: redis
+    container_name: redis-streams
+    expose:
+      - 6379
+  producer:
+    build: ./
+    volumes:
+      - ./:/app
+    links:
+      - redis
+    ports:
+      - 3000:3000
+    depends_on:
+      - "redis"
+    environment:
+      - REDIS_URL=redis://redis-streams
+      - NODE_ENV=development
+      - PORT=3000
+    command: sh -c 'yarn && yarn start:producer'
+  consumer:
+    build: ./
+    volumes:
+      - ./:/app
+    links:
+      - redis
+    ports:
+      - 3001:3001
+    depends_on:
+      - "redis"
+    environment:
+      - REDIS_URL=redis://redis-streams
+      - NODE_ENV=development
+      - PORT=3001
+    command: sh -c 'yarn && yarn start:consumer'
