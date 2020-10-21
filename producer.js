@@ -4,13 +4,15 @@ const redis = require('redis')
 const app = express()
 const redisClient = redis.createClient(process.env.REDIS_URL)
 
+const createWriter = require('@derhuerst/redis-stream/writer')
+const writer = createWriter(redisClient, 'some-stream')
+
 app.get('/', (req, res) => {
   const message = req.query
-  redisClient.xadd('some-stream', '*', 'message', JSON.stringify(message), (error, cursor) => {
-    console.log('Producer error:', error)
-    console.log('Producer cursor:', cursor)
-  }) 
-  return res.send('Success')
+  return writer.write(message, () => {
+    console.log('Producer sent:', message)
+    return res.send('Success')
+  })
 })
  
 const PORT = process.env.PORT || 3000
