@@ -8,14 +8,16 @@ Will start producer on port 3000 and consumer on port 3001.
 
 # Endpoints
 
+Open a browser to perform the following actions
+
 ## Sending Data
 
 ```sh
-curl curl http://localhost:3000?some=value&some-other=other-value
+http://localhost:3000?some=value&some-other=other-value
 ```
 
 ## Fetching Data
 
 ```sh
-curl http://localhost:3001
+http://localhost:3001
 ```
