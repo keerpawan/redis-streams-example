@@ -11,7 +11,7 @@ Will start producer on port 3000 and consumer on port 3001.
 ## Sending Data
 
 ```sh
-curl http://localhost:3000/\?some\=value\&some-other\=other-value
+curl curl http://localhost:3000?some=value&some-other=other-value
 ```
 
 ## Fetching Data
