@@ -4,7 +4,7 @@ const redis = require('redis')
 const app = express()
 const redisClient = redis.createClient(process.env.REDIS_URL)
 
-const createWriter = require('@derhuerst/redis-stream/writer')
+const createWriter = require('./redis-stream/writer')
 const writer = createWriter(redisClient, 'some-stream')
 
 app.get('/', (req, res) => {

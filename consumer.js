@@ -4,8 +4,12 @@ const redis = require('redis')
 const app = express()
 const redisClient = redis.createClient(process.env.REDIS_URL)
 
-const createReader = require('@derhuerst/redis-stream/reader')
-const reader = createReader(redisClient, 'some-stream', { history: true })
+const createReader = require('./redis-stream/reader')
+// by setting this to true you can get all the events the app missed while it was not running
+const BEGUNING = false
+// you can also specify an actual curor id to start reading the stream from if you have that available to you
+const cursor = BEGUNING ? '0' : '$'
+const reader = createReader(redisClient, 'some-stream', { cursor })
 
 const messages = []
 reader.on('data', (data) => {
