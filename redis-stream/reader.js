@@ -3,12 +3,12 @@
 const {Readable} = require('stream')
 
 const createReader = (redis, key, opt = {}) => {
-	// by setting this propert you can set how long to wait for
+	// by setting this property you can set how long to wait for
 	// 0 = Forever
 	// 1 = 1ms
 	const block = opt.block || 0
 
-	// stream maintains it's own cursor once it's started
+	// maintain internal cursor pointer
 	let cursor = opt.cursor || 0
 
 	const onData = (err, res) => {
