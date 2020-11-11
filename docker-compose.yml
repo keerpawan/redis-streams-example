@@ -4,6 +4,8 @@ services:
     container_name: redis-streams
     expose:
       - 6379
+    ports:
+      - "6379:6379"
   producer:
     build: ./
     volumes:
