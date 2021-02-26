@@ -1,6 +1,7 @@
 {
   "name": "redis-streams-example",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "docker-compose up",
     "dev:redis": "docker-compose up redis",
@@ -9,7 +10,6 @@
     "start:producer": "nodemon producer.js --watch producer.js --watch redis-stream",
     "start:consumer": "nodemon consumer.js --watch consumer.js --watch redis-stream"
   },
-  "license": "MIT",
   "dependencies": {
     "express": "^4.16.3",
     "nodemon": "^2.0.6",
