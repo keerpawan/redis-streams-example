@@ -9,6 +9,10 @@ const writer = createWriter(redisClient, 'some-stream')
 
 app.get('/', (req, res) => {
   const message = req.query
+  console.log('mes', message)
+  if (!message || Object.keys(message).length === 0) {
+    return res.status(400).send('Pass query params to send the message. Eg: ?some=message')
+  }
   return writer.write(message, () => {
     console.log('Producer sent:', message)
     return res.send('Success')
